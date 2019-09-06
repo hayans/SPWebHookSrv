@@ -68,36 +68,6 @@ namespace SPWebHookSrv.Helpers
             var json = await MakeCall(url, null, headers, "GET");
             return JsonConvert.DeserializeObject<T>(json, JSONService.Settings);
         }
-
-        public async Task<T> Delete<T>(string url, Dictionary<string, string> headers = null)
-        {
-            if (headers == null)
-            {
-                headers = new Dictionary<string, string>();
-            }
-            var json = await MakeCall(url, null, headers, "DELETE");
-            return JsonConvert.DeserializeObject<T>(json, JSONService.Settings);
-        }
-
-        public async Task<string> Delete(string url, Dictionary<string, string> headers = null)
-        {
-            if (headers == null)
-            {
-                headers = new Dictionary<string, string>();
-            }
-            var json = await MakeCall(url, null, headers, "DELETE");
-            return json;
-        }
-        public async Task<T> Patch<T>(string url, string body, Dictionary<string, string> headers = null)
-        {
-            if (headers == null)
-            {
-                headers = new Dictionary<string, string>();
-            }
-            var json = await MakeCall(url, body, headers, "PATCH");
-            return JsonConvert.DeserializeObject<T>(json, JSONService.Settings);
-        }
-
         public async Task<T> PostFile<T>(string url, Stream file, string fileName, Dictionary<string, string> headers = null, int retrycount = 0)
         {
             if (headers == null)
@@ -165,7 +135,6 @@ namespace SPWebHookSrv.Helpers
             }
             return JsonConvert.DeserializeObject<T>(sd, JSONService.Settings);
         }
-
         public async Task<T> Put<T>(string url, string body, Dictionary<string, string> headers = null)
         {
             if (headers == null)
@@ -175,48 +144,6 @@ namespace SPWebHookSrv.Helpers
             var json = await MakeCall(url, body, headers, "PUT");
             return JsonConvert.DeserializeObject<T>(json, JSONService.Settings);
         }
-
-        //public async Task<Stream> GetStream(string url, int numberofTrys = 0)
-        //{
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        //httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
-        //        if (_auth != null)
-        //        {
-        //            httpClient.DefaultRequestHeaders.Add("Authorization", $"bearer {_auth.AccessToken}");
-        //        }
-
-        //        var request = new HttpRequestMessage(new HttpMethod("GET"), url);
-
-        //        httpClient.Timeout = new TimeSpan(0, 0, 30, 0);
-        //        HttpResponseMessage response = new HttpResponseMessage();
-
-        //        response = await httpClient.SendAsync(request);
-
-
-        //        var res = await response.Content.ReadAsStreamAsync();
-        //        if (!response.IsSuccessStatusCode)
-        //        {
-        //            ApiError ae = JsonConvert.DeserializeObject<ApiError>(response.Content.ReadAsStringAsync().Result, JSONService.Settings);
-        //            if (ae.Error.HttpStatusCode == 429 && numberofTrys < AutomaticRetrys)
-        //            {
-        //                Thread.Sleep(2000);
-        //                var newTry = numberofTrys + 1;
-        //                return await GetStream(url, newTry);
-
-        //            }
-        //            throw new ApiException(ae.Error.DeveloperMessage) { ApiError = ae };
-        //        }
-        //        return res;
-        //    }
-        //}
-
-        //public async Task<string> MakeCallAsync(string url, string body, Dictionary<string, string> headers, string method, int numberofTrys = 0)
-        //{
-        //    var task = Task<String>.Run(() => MakeCall(url,body,headers,method,numberofTrys));
-        //    return await task;
-        //}
-
         public async Task<string> MakeCall(string url, string body, Dictionary<string, string> headers, string method, int numberofTrys = 0)
         {
             using (var httpClient = new HttpClient())
@@ -312,7 +239,6 @@ namespace SPWebHookSrv.Helpers
 
 
         }
-
         public async Task<string> MakeCall(string url, Dictionary<string, string> headers, string method, int numberofTrys = 0)
         {
             using (var httpClient = new HttpClient())

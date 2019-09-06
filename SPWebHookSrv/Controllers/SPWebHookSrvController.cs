@@ -27,10 +27,7 @@ namespace SPWebHookSrv.Controllers
         static string URI = WebConfigurationManager.AppSettings.Get("SPURI");
         string SHAREPOINT_PID = WebConfigurationManager.AppSettings.Get("SPSID"); //"00000003-0000-0ff1-ce00-000000000000";
         string FOLDER_PRE = WebConfigurationManager.AppSettings.Get("DSFPRE");
-    //    string SPSCPATH = WebConfigurationManager.AppSettings.Get("SPSCPATH");
-
-     //   private SharePointService svc;
-
+    
         Uri sharePointUrl = new Uri(URI);
         
         public APIUserAuthenticator getapiAuth()
@@ -292,36 +289,6 @@ namespace SPWebHookSrv.Controllers
             return jsonC.D.Exists;
 
         }
-
-        //private object CreateRequest(string folderPath)
-        //{
-        //    var type = new { type = "SP.Folder" };
-        //    var request = new { __metadata = type, ServerRelativeUrl = folderPath };
-        //    return request;
-        //}
-
-        //private async Task CreateFolder(HttpClient client, string digest)
-        //{
-        //    client.DefaultRequestHeaders.Add("X-RequestDigest", digest);
-        //    var request = CreateRequest("foo");
-        //    string json = JsonConvert.SerializeObject(request);
-        //    StringContent strContent = new StringContent(json);
-        //    strContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
-        //    HttpResponseMessage response = await client.PostAsync("_api/web/getfolderbyserverrelativeurl('test/test123/')/folders", strContent);
-        //    //response.EnsureSuccessStatusCode();
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string content = await response.Content.ReadAsStringAsync();
-        //        Console.WriteLine(content);
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine(response.StatusCode);
-        //        Console.WriteLine(response.ReasonPhrase);
-        //        string content = await response.Content.ReadAsStringAsync();
-        //        Console.WriteLine(content);
-        //    }
-        //}
 
         public HttpResponseMessage Post(HttpRequestMessage request)
         {
